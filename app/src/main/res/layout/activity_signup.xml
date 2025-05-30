@@ -20,14 +20,14 @@
         android:autoSizeMinTextSize="18sp"
         android:autoSizeStepGranularity="1sp"
         android:autoSizeTextType="uniform"
-        android:ellipsize="none"
         android:gravity="center"
-        android:maxLines="1"
         android:padding="8dp"
         android:text="Create your StudySphere Account"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:ellipsize="end" />
+
 
 
 
