@@ -76,14 +76,12 @@
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="57dp"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#00358E"
         android:text="Login"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        android:background="@drawable/rounded_corner"
-        />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/goToSignup"
