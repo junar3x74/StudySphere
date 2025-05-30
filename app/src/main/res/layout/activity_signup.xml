@@ -48,7 +48,7 @@
             android:id="@+id/signupStudentId"
             android:hint="Student ID"
             android:inputType="text"
-            android:drawableStart="@drawable/ic_idcard"
+            android:drawableStart="@drawable/ic_id"
             android:paddingStart="10dp"
             android:paddingEnd="12dp"
             android:drawablePadding="3dp"
