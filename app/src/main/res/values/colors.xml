@@ -5,8 +5,4 @@
 
     <!-- Your main app color -->
     <color name="sky_blue">#03A9F4</color>
-
-    <!-- Optional: other colors -->
-    <color name="warning_red">#FF0000</color>
-    <color name="success_green">#00C853</color>
 </resources>

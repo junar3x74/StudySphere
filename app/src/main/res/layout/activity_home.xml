@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#03A9F4">
@@ -20,27 +20,29 @@
     <Button
         android:id="@+id/btnLibrary"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#00358E"
         android:text="📚 Digital Library"
         android:textColor="@color/white"
-        />
+        android:background="@drawable/rounded_corner" />
 
     <Button
         android:id="@+id/btnGroups"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="50dp"
         android:text="👥 Study Groups"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#00358E"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_corner" />
 
     <Button
         android:id="@+id/btnProfile"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="50dp"
         android:backgroundTint="#00358E"
         android:text="⚙️ Profile / Settings"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_corner" />
 </LinearLayout>
