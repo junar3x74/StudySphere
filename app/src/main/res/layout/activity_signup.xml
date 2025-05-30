@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03A9F4"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/studySphereLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Create Your StudySphere Account"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/signupFullName"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:drawableStart="@drawable/ic_user"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner" />
+
+        <EditText
+            android:id="@+id/signupStudentId"
+            android:hint="Student ID"
+            android:inputType="text"
+            android:drawableStart="@drawable/ic_idcard"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner" />
+
+        <EditText
+            android:id="@+id/signupEmail"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/ic_email"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner" />
+
+        <EditText
+            android:id="@+id/signupPassword"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_lock"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner" />
+
+        <EditText
+            android:id="@+id/signupConfirmPassword"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_lock"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner" />
+
+        <EditText
+            android:id="@+id/signupProgram"
+            android:hint="Program / Department"
+            android:inputType="text"
+            android:drawableStart="@drawable/ic_program"
+            android:paddingStart="10dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="3dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:text="Sign Up"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#00358E"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/goToLogin"
+            android:text="Already have an account? Login"
+            android:textColor="@color/text_press_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>
