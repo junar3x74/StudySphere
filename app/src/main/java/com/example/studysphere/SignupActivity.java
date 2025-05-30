@@ -69,6 +69,12 @@ public class SignupActivity extends AppCompatActivity {
         String userConfirm = confirmPassword.getText().toString().trim();
         String program = spinnerProgram.getSelectedItem().toString();
 
+        if (program.equals("--Select Program--")) {
+            Toast.makeText(SignupActivity.this, "Please select a valid program", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         // Basic validation
         if (TextUtils.isEmpty(name)) {
             fullName.setError("Full name required");
@@ -78,7 +84,11 @@ public class SignupActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(studentID)) {
             studentId.setError("Student ID required");
             return;
+        } else if (!studentID.matches("^\\d{2}-\\d{5}$")) {
+            studentId.setError("Invalid format. Use 00-00000");
+            return;
         }
+
 
         if (TextUtils.isEmpty(userEmail)) {
             email.setError("Email required");
@@ -108,7 +118,7 @@ public class SignupActivity extends AppCompatActivity {
                         // Save user profile to Firestore
                         Map<String, Object> userData = new HashMap<>();
                         userData.put("fullName", name);
-                        userData.put("studentId", studentID);
+                        userData.put("studentID", studentID);
                         userData.put("email", userEmail);
                         userData.put("program", program);
                         userData.put("createdAt", FieldValue.serverTimestamp());

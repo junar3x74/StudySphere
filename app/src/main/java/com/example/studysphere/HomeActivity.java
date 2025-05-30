@@ -40,8 +40,8 @@ public class HomeActivity extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
-                            String fullName = documentSnapshot.getString("fullName");
-                            homeWelcome.setText("Welcome, " + fullName);
+                            String studentID = documentSnapshot.getString("studentID");
+                            homeWelcome.setText("Welcome, " + studentID);
                         } else {
                             homeWelcome.setText("Welcome, user");
                         }
