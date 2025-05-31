@@ -1,48 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#03A9F4">
+    android:background="#FAFAFA">
 
-    <TextView
-        android:id="@+id/homeWelcome"
-        android:layout_width="wrap_content"
+    <!-- App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to StudySphere!"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"
-        android:textColor="#000000" />
+        android:backgroundTint="#03A9F4"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        android:title="StudySphere"
+        android:titleTextColor="@android:color/white"
+        app:titleCentered="true"
+        app:menu="@menu/top_app_bar_menu" />
 
-    <Button
-        android:id="@+id/btnLibrary"
+    <!-- Fragment Container -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#00358E"
-        android:text="📚 Digital Library"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_corner" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="56dp" />
 
-    <Button
-        android:id="@+id/btnGroups"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="👥 Study Groups"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#00358E"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_corner" />
 
-    <Button
-        android:id="@+id/btnProfile"
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:backgroundTint="#00358E"
-        android:text="⚙️ Profile / Settings"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_corner" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="#FFFFFF"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:menu="@menu/bottom_nav_menu" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

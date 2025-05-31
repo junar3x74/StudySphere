@@ -2,69 +2,90 @@ package com.example.studysphere;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.*;
+import com.example.studysphere.fragments.HomeFragment;
+import com.example.studysphere.fragments.LibraryFragment;
+import com.example.studysphere.fragments.ProfileFragment;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.studysphere.R;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView homeWelcome;
-    private Button btnLibrary, btnGroups, btnProfile;
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
+    private MaterialToolbar topAppBar;
+    private BottomNavigationView bottomNavigation;
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
+
+    private final Fragment homeFragment = new HomeFragment();
+    private final Fragment libraryFragment = new LibraryFragment();
+    private final Fragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        topAppBar = findViewById(R.id.topAppBar);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        homeWelcome = findViewById(R.id.homeWelcome);
-        btnLibrary = findViewById(R.id.btnLibrary);
-        btnGroups = findViewById(R.id.btnGroups);
-        btnProfile = findViewById(R.id.btnProfile);
+        // Set default fragment
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, homeFragment)
+                .commit();
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            String uid = user.getUid();
-
-            db.collection("users").document(uid)
-                    .get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            String studentID = documentSnapshot.getString("studentID");
-                            homeWelcome.setText("Welcome, " + studentID);
-                        } else {
-                            homeWelcome.setText("Welcome, user");
-                        }
-                    })
-                    .addOnFailureListener(e -> {
-                        homeWelcome.setText("Welcome!");
-                        Toast.makeText(HomeActivity.this, "Failed to load name.", Toast.LENGTH_SHORT).show();
-                    });
-        }
-
-        btnLibrary.setOnClickListener(v -> {
-            // TODO: Launch library activity
-            // startActivity(new Intent(HomeActivity.this, LibraryActivity.class));
+        // Top AppBar menu actions
+        topAppBar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_lite_mode) {
+                // TODO: Toggle Lite Mode logic
+                Toast.makeText(HomeActivity.this, "Lite Mode toggled", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
         });
 
-        btnGroups.setOnClickListener(v -> {
-            // TODO: Launch study groups activity
-            // startActivity(new Intent(HomeActivity.this, GroupsActivity.class));
+        // Bottom navigation selection
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
+                selectedFragment = homeFragment;
+
+            } else if (id == R.id.nav_library) {
+                selectedFragment = libraryFragment;
+
+            } else if (id == R.id.nav_create) {
+                startActivity(new Intent(HomeActivity.this, CreatePostActivity.class));
+                return true;
+
+            } else if (id == R.id.nav_chat) {
+                Toast.makeText(this, "Chat coming soon", Toast.LENGTH_SHORT).show();
+                return true;
+
+            } else if (id == R.id.nav_inbox) {
+                Toast.makeText(this, "Inbox feature coming soon", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainer, selectedFragment)
+                        .commit();
+                return true;
+            }
+
+            return false;
+
         });
 
-        btnProfile.setOnClickListener(v -> {
-            // TODO: Launch profile/settings activity
-            // startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
-        });
     }
 }

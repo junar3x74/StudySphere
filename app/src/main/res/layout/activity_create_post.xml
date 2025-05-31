@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#FAFAFA">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Title -->
+        <EditText
+            android:id="@+id/inputTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Post Title"
+            android:background="@drawable/rounded_corner"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="#888888"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Description -->
+        <EditText
+            android:id="@+id/inputDescription"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="Description (optional)"
+            android:gravity="top"
+            android:background="@drawable/rounded_corner"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="#888888"
+            android:layout_marginBottom="16dp"
+            android:inputType="textMultiLine"
+            android:maxLines="6" />
+
+        <!-- File selection -->
+        <Button
+            android:id="@+id/btnSelectFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📎 Attach a file (PDF, DOCX, etc.)"
+            android:backgroundTint="#03A9F4"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Selected file name preview -->
+        <TextView
+            android:id="@+id/fileNamePreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No file selected"
+            android:textColor="#777777"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Post button -->
+        <Button
+            android:id="@+id/btnSubmitPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:backgroundTint="#00358E"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</ScrollView>
