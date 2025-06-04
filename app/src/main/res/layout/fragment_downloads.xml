@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#FAFAFA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-
-    <!-- App Header -->
+    <!-- Title -->
     <TextView
-        android:id="@+id/libraryHeader"
+        android:id="@+id/downloadsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="📚 Official Resources"
-        android:textColor="#222222"
+        android:text="📂 Your Downloads"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:textColor="#222222" />
 
-    <!-- RecyclerView -->
+    <!-- RecyclerView for downloaded files -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/libraryRecyclerView"
+        android:id="@+id/downloadsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:scrollbars="vertical"
         android:clipToPadding="false"
-        android:padding="8dp" />
-
+        android:padding="8dp"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </LinearLayout>

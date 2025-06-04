@@ -2,90 +2,84 @@ package com.example.studysphere.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.text.format.DateUtils;
+import android.view.*;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.studysphere.PublicProfileActivity;
 import com.example.studysphere.R;
-import com.example.studysphere.models.Post;
+import com.example.studysphere.models.PostItem;
 import com.google.firebase.Timestamp;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
+    private List<PostItem> postItemList;
     private Context context;
-    private List<Post> postList;
 
-    public PostAdapter(Context context, List<Post> postList) {
+    public PostAdapter(List<PostItem> postItemList, Context context) {
+        this.postItemList = postItemList;
         this.context = context;
-        this.postList = postList;
     }
 
-    public void setPostList(List<Post> updatedList) {
-        this.postList = updatedList;
+    public void setPostList(List<PostItem> postItemList) {
+        this.postItemList = postItemList;
         notifyDataSetChanged();
+    }
+
+    public static class PostViewHolder extends RecyclerView.ViewHolder {
+        TextView postTitle, postDescription, postAuthor, postProgram;
+
+        public PostViewHolder(View itemView) {
+            super(itemView);
+            postTitle = itemView.findViewById(R.id.postTitle);
+            postDescription = itemView.findViewById(R.id.postDescription);
+            postAuthor = itemView.findViewById(R.id.postAuthor);
+            postProgram = itemView.findViewById(R.id.postProgram);
+        }
     }
 
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_post_card, parent, false);
+        context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
         return new PostViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        Post post = postList.get(position);
+        PostItem postItem = postItemList.get(position);
 
-        holder.postTitle.setText(post.getTitle());
-        holder.postDescription.setText(post.getDescription());
+        holder.postTitle.setText(postItem.getTitle());
+        holder.postDescription.setText(postItem.getDescription());
+        holder.postProgram.setText(postItem.getProgram());
 
         // Format timestamp
-        Timestamp ts = post.getTimestamp();
-        String timeAgo = "Just now";
-        if (ts != null) {
-            Date date = ts.toDate();
-            SimpleDateFormat sdf = new SimpleDateFormat("MMM d, h:mm a", Locale.getDefault());
-            timeAgo = sdf.format(date);
+        Timestamp timestamp = postItem.getTimestamp();
+        String timeAgo = "";
+        if (timestamp != null) {
+            long now = System.currentTimeMillis();
+            long postTime = timestamp.toDate().getTime();
+            timeAgo = DateUtils.getRelativeTimeSpanString(postTime, now, DateUtils.MINUTE_IN_MILLIS).toString();
         }
 
-        holder.postAuthor.setText("Posted by " + post.getAuthorName() + " · " + timeAgo);
+        holder.postAuthor.setText("Posted by " + postItem.getFullName() + " · " + timeAgo);
 
-        holder.btnDownload.setOnClickListener(v -> {
-            if (post.getFileUrl() != null && !post.getFileUrl().isEmpty()) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(post.getFileUrl()));
-                context.startActivity(intent);
-            } else {
-                Toast.makeText(context, "No file attached", Toast.LENGTH_SHORT).show();
-            }
+        // Author name is clickable
+        holder.postAuthor.setOnClickListener(v -> {
+            Intent intent = new Intent(context, PublicProfileActivity.class);
+            intent.putExtra("studentID", postItem.getStudentID());
+            context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return postList != null ? postList.size() : 0;
-    }
-
-    public static class PostViewHolder extends RecyclerView.ViewHolder {
-
-        TextView postTitle, postAuthor, postDescription;
-        Button btnDownload;
-
-        public PostViewHolder(@NonNull View itemView) {
-            super(itemView);
-            postTitle = itemView.findViewById(R.id.postTitle);
-            postAuthor = itemView.findViewById(R.id.postAuthor);
-            postDescription = itemView.findViewById(R.id.postDescription);
-            btnDownload = itemView.findViewById(R.id.btnDownload);
-        }
+        return postItemList.size();
     }
 }

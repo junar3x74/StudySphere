@@ -35,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
 
         // Go to signup
         goToSignup.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            // Optional: You can clear the stack if needed when going from login → signup
+            startActivity(intent);
             finish();
         });
 
@@ -84,8 +86,12 @@ public class LoginActivity extends AppCompatActivity {
                     LoadingDialogHelper.hide();
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, LoadingActivity.class));
-                        finish();
+
+                        // ✅ Prevent going back to login with BACK button
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
                     } else {
                         Toast.makeText(LoginActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

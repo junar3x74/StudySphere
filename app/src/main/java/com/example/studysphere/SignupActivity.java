@@ -53,8 +53,9 @@ public class SignupActivity extends AppCompatActivity {
 
         // Go to login link
         goToLogin.setOnClickListener(v -> {
-            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-            finish();
+            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         });
 
         // Sign Up button logic
@@ -128,8 +129,9 @@ public class SignupActivity extends AppCompatActivity {
                                 .addOnSuccessListener(unused -> {
                                     LoadingDialogHelper.hide();
                                     Toast.makeText(SignupActivity.this, "Account created!", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                                    finish();
+                                    Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 })
                                 .addOnFailureListener(e -> {
                                     LoadingDialogHelper.hide();

@@ -33,7 +33,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibraryV
     @NonNull
     @Override
     public LibraryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_library_card, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_library, parent, false);
         return new LibraryViewHolder(view);
     }
 
@@ -46,7 +46,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibraryV
 
         holder.btnOpenFile.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(item.getFileUrl()));
+            intent.setData(Uri.parse(item.getFileURL()));
             context.startActivity(intent);
         });
     }

@@ -72,7 +72,6 @@ public class LibraryFragment extends Fragment {
                     adapter.setItemList(itemList);
                 })
                 .addOnFailureListener(e -> {
-                    android.util.Log.e("LibraryDebug", "Firestore load failed", e);
                     Toast.makeText(getContext(), "Failed to load resources", Toast.LENGTH_SHORT).show();
                 });
     }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.*;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,39 +25,34 @@ public class CreatePostActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST = 101;
     private Uri fileUri;
+    private String selectedFileName = "No file selected";
 
     private FirebaseFirestore db;
     private FirebaseStorage storage;
     private FirebaseAuth mAuth;
-    private String selectedFileName = "No file selected";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
-        // UI references
         inputTitle = findViewById(R.id.inputTitle);
         inputDescription = findViewById(R.id.inputDescription);
         btnSelectFile = findViewById(R.id.btnSelectFile);
         btnSubmitPost = findViewById(R.id.btnSubmitPost);
         fileNamePreview = findViewById(R.id.fileNamePreview);
 
-        // Firebase
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        // File picker
         btnSelectFile.setOnClickListener(v -> openFilePicker());
-
-        // Submit post
         btnSubmitPost.setOnClickListener(v -> uploadPost());
     }
 
     private void openFilePicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*"); // Accept all file types, you can limit to application/pdf, etc.
+        intent.setType("*/*");
         startActivityForResult(intent, PICK_FILE_REQUEST);
     }
 
@@ -92,41 +86,55 @@ public class CreatePostActivity extends AppCompatActivity {
         btnSubmitPost.setEnabled(false);
         btnSubmitPost.setText("Posting...");
 
-        if (fileUri != null) {
-            // Upload file first
-            String filename = "posts/" + System.currentTimeMillis() + "_" + selectedFileName;
-            StorageReference fileRef = storage.getReference().child(filename);
+        db.collection("users").document(user.getUid()).get()
+                .addOnSuccessListener(doc -> {
+                    String fullName = doc.getString("fullName");
+                    String studentID = doc.getString("studentID");
+                    String program = doc.getString("program");
 
-            fileRef.putFile(fileUri)
-                    .addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl()
-                            .addOnSuccessListener(uri -> savePostToFirestore(title, description, uri.toString(), user)))
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(this, "File upload failed", Toast.LENGTH_SHORT).show();
-                        btnSubmitPost.setEnabled(true);
-                        btnSubmitPost.setText("Post");
-                    });
-        } else {
-            // No file attached
-            savePostToFirestore(title, description, null, user);
-        }
+                    if (fileUri != null) {
+                        String filename = "posts/" + System.currentTimeMillis() + "_" + selectedFileName;
+                        StorageReference fileRef = storage.getReference().child(filename);
+
+                        fileRef.putFile(fileUri).addOnSuccessListener(taskSnapshot ->
+                                fileRef.getDownloadUrl().addOnSuccessListener(uri ->
+                                        savePostToFirestore(title, description, uri.toString(), user, studentID, fullName, program)
+                                )
+                        ).addOnFailureListener(e -> {
+                            Toast.makeText(this, "File upload failed", Toast.LENGTH_SHORT).show();
+                            btnSubmitPost.setEnabled(true);
+                            btnSubmitPost.setText("Post");
+                        });
+                    } else {
+                        savePostToFirestore(title, description, null, user, studentID, fullName, program);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to retrieve user info", Toast.LENGTH_SHORT).show();
+                    btnSubmitPost.setEnabled(true);
+                    btnSubmitPost.setText("Post");
+                });
     }
 
-    private void savePostToFirestore(String title, String description, String fileUrl, FirebaseUser user) {
+    private void savePostToFirestore(String title, String description, String fileURL, FirebaseUser user,
+                                     String studentID, String fullName, String program) {
         Map<String, Object> post = new HashMap<>();
         post.put("title", title);
         post.put("description", description);
-        post.put("fileUrl", fileUrl);
-        post.put("authorId", user.getUid());
-        post.put("authorName", user.getDisplayName() != null ? user.getDisplayName() : user.getEmail());
+        post.put("fileURL", fileURL);
+        post.put("studentID", studentID);    // your app's ID, like "22-12345"
+        post.put("authUID", user.getUid());  // Firebase's UID
+        post.put("fullName", fullName);
+        post.put("program", program);
         post.put("timestamp", FieldValue.serverTimestamp());
         post.put("likesCount", 0);
         post.put("commentsCount", 0);
 
-        db.collection("posts")
-                .add(post)
+        db.collection("posts").add(post)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(this, "Post created!", Toast.LENGTH_SHORT).show();
-                    finish(); // Return to Home
+                    startActivity(new Intent(CreatePostActivity.this, HomeActivity.class));
+                    finish();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to create post", Toast.LENGTH_SHORT).show();

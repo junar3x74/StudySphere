@@ -4,16 +4,16 @@ public class LibraryItem {
     private String title;
     private String program;
     private String description;
-    private String fileUrl;
+    private String fileURL;
 
     // Needed for Firestore deserialization
     public LibraryItem() {}
 
-    public LibraryItem(String title, String program, String description, String fileUrl) {
+    public LibraryItem(String title, String program, String description, String fileURL) {
         this.title = title;
         this.program = program;
         this.description = description;
-        this.fileUrl = fileUrl;
+        this.fileURL = fileURL;
     }
 
     public String getTitle() {
@@ -28,7 +28,7 @@ public class LibraryItem {
         return description;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
+    public String getFileURL() {
+        return fileURL;
     }
 }
