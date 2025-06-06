@@ -5,49 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:elevation="4dp"
+    android:backgroundTint="#01579B">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
+        <!-- Library Title -->
         <TextView
             android:id="@+id/libraryTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Document Title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="4dp" />
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+        <!-- Library Program -->
         <TextView
             android:id="@+id/libraryProgram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Program: BSIT"
-            android:textStyle="italic"
-            android:textColor="#666666"
-            android:layout_marginBottom="4dp" />
+            android:layout_below="@id/libraryAuthor"
+            android:layout_marginTop="2dp"
+            android:text="BSIT"
+            android:textColor="#03A9F4"
+            android:textSize="14sp" />
 
+        <!-- Library Description -->
         <TextView
             android:id="@+id/libraryDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Short description goes here."
-            android:textColor="#444444"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btnOpenFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📂 Open File"
+            android:layout_below="@id/libraryTitle"
+            android:layout_marginTop="30dp"
+            android:text="Short description goes here."
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <!-- Author and Upload Date -->
+        <TextView
+            android:id="@+id/libraryAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/libraryDescription"
+            android:layout_marginTop="50dp"
+            android:text="Uploaded by Admin · 3d ago"
+            android:textColor="#03A9F4"
+            android:textSize="15sp" />
+
+        <!-- Open File Button -->
+        <Button
+            android:id="@+id/btnOpenFile"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/libraryDescription"
+            android:text="Open File"
             android:backgroundTint="#03A9F4"
             android:textColor="@android:color/white" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -5,36 +5,37 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    android:background="#FAFAFA">
+    android:background="#03A9F4">
 
 
     <!-- Profile Info -->
+    <!-- android:text="Full Name" -->
     <TextView
         android:id="@+id/profileFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Full Name"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#212121"
+        android:textColor="@color/black"
         android:layout_marginBottom="4dp" />
 
+    <!-- android:text="Student ID: 00-00000" -->
     <TextView
         android:id="@+id/profileStudentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Student ID: 00-00000"
         android:textSize="16sp"
-        android:textColor="#555555"
+        android:textColor="@color/black"
         android:layout_marginBottom="2dp" />
 
+    <!-- android:text="Email: example@email.com" -->
     <TextView
         android:id="@+id/profileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email: example@email.com"
         android:textSize="16sp"
-        android:textColor="#555555"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp" />
 
     <Button
@@ -50,6 +51,21 @@
         android:layout_marginBottom="24dp"
         android:padding="12dp" />
 
+    <Button
+        android:id="@+id/btnMessages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Messages"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#03A9F4"
+        android:textStyle=""
+        android:backgroundTint="#FFFFFF"
+        android:background="@drawable/rounded_corner"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp" />
+
+
     <!-- Lite Mode Section -->
     <TextView
         android:layout_width="wrap_content"
@@ -58,14 +74,14 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="#333333"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"/>
 
     <Switch
         android:id="@+id/switchLiteMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enable Lite Mode"
-        android:textColor="#444444"
+        android:textColor="@color/black"
         android:layout_marginBottom="24dp" />
 
     <!-- Action Buttons -->
@@ -77,7 +93,7 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textColor="@android:color/white"
-        android:backgroundTint="#03A9F4"
+        android:backgroundTint="#00358E"
         android:background="@drawable/rounded_corner"
         android:layout_marginBottom="12dp" />
 
@@ -89,7 +105,7 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         android:textColor="@android:color/white"
-        android:backgroundTint="#03A9F4"
+        android:backgroundTint="#00358E"
         android:background="@drawable/rounded_corner"
         android:layout_marginBottom="12dp" />
 

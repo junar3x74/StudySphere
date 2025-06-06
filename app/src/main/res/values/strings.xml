@@ -4,7 +4,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string-array name="program_list">
-        <item>--Select Program--</item>  <!-- default item -->
+        <item>-- Select Program --</item>  <!-- default item -->
         <item>BSIT</item>
         <item>BSCS</item>
         <item>BSEMC</item>

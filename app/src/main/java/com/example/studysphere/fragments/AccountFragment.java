@@ -7,11 +7,12 @@ import android.view.*;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog; // Make sure this is imported
 import androidx.fragment.app.Fragment;
 
 import com.example.studysphere.HomeActivity;
 import com.example.studysphere.LoginActivity;
+import com.example.studysphere.MessagesActivity;
 import com.example.studysphere.PublicProfileActivity;
 import com.example.studysphere.R;
 import com.example.studysphere.SignupActivity;
@@ -21,7 +22,7 @@ import com.google.firebase.firestore.*;
 public class AccountFragment extends Fragment {
 
     private TextView profileFullName, profileStudentId, profileEmail;
-    private Button btnLogout, btnChangeEmail, btnChangePassword, btnViewProfile;
+    private Button btnLogout, btnChangeEmail, btnChangePassword, btnViewProfile, btnMessages;
     private Switch liteModeSwitch;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -68,6 +69,7 @@ public class AccountFragment extends Fragment {
         profileStudentId = view.findViewById(R.id.profileStudentId);
         profileEmail = view.findViewById(R.id.profileEmail);
         btnViewProfile = view.findViewById(R.id.btnViewProfile);
+        btnMessages = view.findViewById(R.id.btnMessages);
         btnChangeEmail = view.findViewById(R.id.btnChangeEmail);
         btnChangePassword = view.findViewById(R.id.btnChangePassword);
         btnLogout = view.findViewById(R.id.btnLogout);
@@ -114,6 +116,12 @@ public class AccountFragment extends Fragment {
                             Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                     );
         });
+
+        Button btnMessages = view.findViewById(R.id.btnMessages);
+        btnMessages.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), MessagesActivity.class));
+        });
+
 
         btnChangeEmail.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
@@ -214,10 +222,18 @@ public class AccountFragment extends Fragment {
             builder.show();
         });
 
+        // MODIFIED: Logout button with confirmation dialog
         btnLogout.setOnClickListener(v -> {
-            mAuth.signOut();
-            startActivity(new Intent(getActivity(), HomeActivity.class));
-            getActivity().finish();
+            new AlertDialog.Builder(requireContext())
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        mAuth.signOut();
+                        startActivity(new Intent(getActivity(), HomeActivity.class));
+                        getActivity().finish(); // Finish the current activity to prevent returning to it
+                    })
+                    .setNegativeButton("No", null) // 'null' dismisses the dialog without any action
+                    .show();
         });
 
         liteModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {

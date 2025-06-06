@@ -9,27 +9,13 @@
     android:background="#03A9F4">
 
 
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="25dp"
-        android:autoSizeMaxTextSize="30sp"
-        android:autoSizeMinTextSize="18sp"
-        android:autoSizeStepGranularity="1sp"
-        android:autoSizeTextType="uniform"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="Create your StudySphere Account"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:ellipsize="end" />
-
-
-
+    <ImageView
+        android:id="@+id/StudySphere"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/studysphere"
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:id="@+id/signupStudentId"
@@ -46,7 +32,8 @@
         android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/signupFullName"
@@ -61,7 +48,8 @@
         android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/signupEmail"
@@ -76,7 +64,8 @@
         android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/signupPassword"
@@ -91,7 +80,8 @@
         android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/signupConfirmPassword"
@@ -106,7 +96,8 @@
         android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:textSize="16sp" />
 
     <Spinner
         android:id="@+id/spinnerProgram"
@@ -116,18 +107,19 @@
         android:background="@drawable/rounded_corner"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnSignUp"
-        android:text="Sign Up"
-        android:textSize="18sp"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:backgroundTint="#00358E"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#00358E"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/goToLogin"

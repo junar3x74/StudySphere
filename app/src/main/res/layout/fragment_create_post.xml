@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#03A9F4">
+
+    <!-- Scrollable Post Form -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="56dp"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <!-- Post Title -->
+            <EditText
+                android:id="@+id/inputTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/square_corner"
+                android:backgroundTint="#01579B"
+                android:hint="Post Title"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:textColorHint="#BDC5E2" />
+
+            <!-- Post Description -->
+            <EditText
+                android:id="@+id/inputDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Description (optional)"
+                android:gravity="top"
+                android:background="@drawable/square_corner"
+                android:backgroundTint="#01579B"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:textColorHint="#BDC5E2"
+                android:layout_marginBottom="16dp"
+                android:inputType="textMultiLine"
+                android:maxLines="6" />
+
+            <!-- File selection -->
+            <Button
+                android:id="@+id/btnSelectFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📎 Attach a file (PDF, DOCX, etc.)"
+                android:backgroundTint="#00358E"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/rounded_corner" />
+
+            <!-- File preview -->
+            <TextView
+                android:id="@+id/fileNamePreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No file selected"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Submit -->
+            <Button
+                android:id="@+id/btnSubmitPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Post"
+                android:backgroundTint="#00358E"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:background="@drawable/rounded_corner" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

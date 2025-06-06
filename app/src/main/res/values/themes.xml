@@ -4,8 +4,8 @@
     <!-- Base application theme -->
     <style name="Theme.StudySphere" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize only status bar -->
-        <item name="android:statusBarColor">@color/sky_blue</item>
-        <item name="android:navigationBarColor">@color/sky_blue</item>
+        <item name="android:statusBarColor">#01579B</item>
+        <item name="android:navigationBarColor">#01579B</item>
     </style>
 
 </resources>

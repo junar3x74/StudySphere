@@ -13,22 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Top App Bar -->
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#03A9F4"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
             android:title="StudySphere"
             android:titleTextColor="@android:color/white"
-            app:navigationIconTint="@android:color/white"
-            app:titleCentered="true"
-            app:navigationIcon="@drawable/ic_menu"
-            app:actionMenuTextColor="@android:color/white"
-            app:iconTint="@android:color/white"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+            android:background="#01579B"
+            app:titleCentered="true" />
 
-        <!-- Fragment Container -->
         <FrameLayout
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
@@ -36,30 +31,17 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginBottom="56dp" />
 
-        <!-- Bottom Navigation -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="bottom"
-            android:backgroundTint="#FFFFFF"
-            app:labelVisibilityMode="labeled"
+            app:backgroundTint="#01579B"
             app:itemIconTint="@color/nav_item_color"
             app:itemTextColor="@color/nav_item_color"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <!-- Left Drawer (☰) -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/drawerView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        android:background="#FFFFFF"
-        app:menu="@menu/top_app_bar_menu"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

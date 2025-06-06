@@ -3,5 +3,5 @@
     <!-- Active (selected tab) -->
     <item android:color="#03A9F4" android:state_checked="true" />
     <!-- Inactive -->
-    <item android:color="#777777" android:state_checked="false" />
+    <item android:color="@color/white" android:state_checked="false" />
 </selector>

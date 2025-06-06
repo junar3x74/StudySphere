@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#FAFAFA"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#03A9F4">
 
-    <!-- Title -->
     <TextView
         android:id="@+id/downloadsTitle"
         android:layout_width="wrap_content"
@@ -15,10 +14,9 @@
         android:text="📂 Your Downloads"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:padding="16dp"
-        android:textColor="#222222" />
+        android:textColor="@color/white"
+        android:padding="16dp" />
 
-    <!-- RecyclerView for downloaded files -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/downloadsRecyclerView"
         android:layout_width="match_parent"
@@ -27,4 +25,13 @@
         android:padding="8dp"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/emptyDownloadsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No downloaded files found."
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:visibility="gone" /> </LinearLayout>

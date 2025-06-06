@@ -1,11 +1,13 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     android:elevation="4dp"
-    android:backgroundTint="#FFFFFF">
+    android:backgroundTint="#01579B">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,52 +20,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Post Title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#212121" />
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <!-- Post Program -->
         <TextView
             android:id="@+id/postProgram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/postAuthor"
+            android:layout_marginTop="2dp"
             android:text="BSIT"
-            android:textColor="#757575"
-            android:textSize="14sp"
-            android:layout_below="@id/postTitle"
-            android:layout_marginTop="2dp" />
+            android:textColor="#03A9F4"
+            android:textSize="14sp" />
 
         <!-- Post Description -->
         <TextView
             android:id="@+id/postDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Post content here..."
-            android:layout_below="@id/postProgram"
-            android:layout_marginTop="8dp"
-            android:textColor="#444444" />
+            android:layout_below="@id/postTitle"
+            android:layout_marginTop="25dp"
+            android:text="Description"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
 
         <!-- Author and Timestamp -->
         <TextView
             android:id="@+id/postAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/postDescription"
-            android:layout_marginTop="12dp"
-            android:text="Posted by Jane Doe · 2h ago"
-            android:textSize="12sp"
-            android:textColor="#888888" />
+            android:layout_below="@id/btnOpenFile"
+            android:layout_marginTop="5dp"
+            android:text="Posted by John Doe · 2h ago"
+            android:textColor="#03A9F4"
+            android:textSize="15sp" />
 
-        <!-- Overflow Menu (Visible only for the author) -->
-        <ImageButton
-            android:id="@+id/postMenuButton"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnOpenFile"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@id/postAuthor"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_more_vert"
-            android:contentDescription="Post Menu"
-            android:visibility="gone" />
+            android:layout_below="@+id/postDescription"
+            android:layout_marginTop="5dp"
+
+            android:text="Open File"
+            android:backgroundTint="#03A9F4"
+            android:textColor="@android:color/white" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
