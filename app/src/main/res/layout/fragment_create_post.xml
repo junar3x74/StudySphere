@@ -29,7 +29,9 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/square_corner"
                 android:backgroundTint="#01579B"
-                android:hint="Post Title"
+                android:hint="Title"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 android:padding="12dp"
                 android:textColor="@color/white"
                 android:textColorHint="#BDC5E2" />

@@ -147,11 +147,13 @@ public class CreatePostFragment extends Fragment {
         db.collection("users").document(user.getUid()).get()
                 .addOnSuccessListener(doc -> {
                     String fullName = doc.getString("fullName");
+                    // Ensure you are retrieving 'studentID' from the user's document
                     String studentID = doc.getString("studentID");
                     String program = doc.getString("program");
 
                     if (fileUri != null) {
                         String safeFileName = selectedFileName.replaceAll("[^a-zA-Z0-9._-]", "_");
+                        // Use user.getUid() for storage path if it's the unique identifier for the user's files
                         String filePath = "uploaded_files/" + user.getUid() + "/" + System.currentTimeMillis() + "_" + safeFileName;
                         StorageReference fileRef = FirebaseStorage.getInstance().getReference()
                                 .child("uploads/" + filePath);
@@ -195,8 +197,8 @@ public class CreatePostFragment extends Fragment {
         post.put("title", title);
         post.put("description", description);
         post.put("fileURL", fileURL);
-        post.put("studentID", studentID);
-        post.put("authUID", user.getUid());
+        post.put("studentID", studentID); // Using studentID as the author's unique identifier
+        // Removed: post.put("authUID", user.getUid()); // This line is removed for consistency
         post.put("fullName", fullName);
         post.put("program", program);
         post.put("timestamp", FieldValue.serverTimestamp());

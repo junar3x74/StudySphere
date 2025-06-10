@@ -64,17 +64,16 @@ public class SignupActivity extends AppCompatActivity {
 
     private void createAccount() {
         String name = fullName.getText().toString().trim();
-        String studentID = studentId.getText().toString().trim();
+        final String studentID = studentId.getText().toString().trim(); // Make final for inner class
         String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         String userConfirm = confirmPassword.getText().toString().trim();
         String program = spinnerProgram.getSelectedItem().toString();
 
-        if (program.equals("--Select Program--")) {
+        if (program.equals("-- Select Program --")) {
             Toast.makeText(SignupActivity.this, "Please select a valid program", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         // Basic validation
         if (TextUtils.isEmpty(name)) {
@@ -89,7 +88,6 @@ public class SignupActivity extends AppCompatActivity {
             studentId.setError("Invalid format. Use 00-00000");
             return;
         }
-
 
         if (TextUtils.isEmpty(userEmail)) {
             email.setError("Email required");
@@ -107,9 +105,33 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         // Show loading dialog
-        LoadingDialogHelper.show(SignupActivity.this, "Creating account...");
+        LoadingDialogHelper.show(SignupActivity.this, "Checking student ID...");
 
-        // Create user
+        // --- Start of changes for unique student ID ---
+        db.collection("users")
+                .whereEqualTo("studentID", studentID)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult() != null && !task.getResult().isEmpty()) {
+                            // Student ID already exists
+                            LoadingDialogHelper.hide();
+                            studentId.setError("Student ID already registered.");
+                            Toast.makeText(SignupActivity.this, "Student ID is already taken.", Toast.LENGTH_LONG).show();
+                        } else {
+                            // Student ID is unique, proceed with account creation
+                            LoadingDialogHelper.show(SignupActivity.this, "Creating account..."); // Update dialog message
+                            createFirebaseUser(name, studentID, userEmail, userPassword, program);
+                        }
+                    } else {
+                        // Error checking student ID
+                        LoadingDialogHelper.hide();
+                        Toast.makeText(SignupActivity.this, "Error checking student ID uniqueness: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void createFirebaseUser(String name, String studentID, String userEmail, String userPassword, String program) {
         mAuth.createUserWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -135,12 +157,21 @@ public class SignupActivity extends AppCompatActivity {
                                 })
                                 .addOnFailureListener(e -> {
                                     LoadingDialogHelper.hide();
-                                    Toast.makeText(SignupActivity.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    // If saving user data fails after auth, you might want to delete the auth user
+                                    // to prevent orphaned accounts, though it's less common for this to fail.
+                                    user.delete().addOnCompleteListener(deleteTask -> {
+                                        if (deleteTask.isSuccessful()) {
+                                            Toast.makeText(SignupActivity.this, "Failed to save user data. Auth user deleted.", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(SignupActivity.this, "Failed to save user data and could not delete auth user.", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                    Toast.makeText(SignupActivity.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_LONG).show();
                                 });
 
                     } else {
                         LoadingDialogHelper.hide();
-                        Toast.makeText(SignupActivity.this, "Sign up failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "Sign up failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

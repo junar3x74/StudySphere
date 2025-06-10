@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp;
 public class PostItem {
 
     private String postID;
-    private String studentID;   // Replaces userID
+    private String studentID;   // This is already here and will represent the author's ID
     private String fullName;
     private String title;
     private String description;
@@ -18,12 +18,12 @@ public class PostItem {
     // Required empty constructor for Firestore
     public PostItem() {}
 
-    public PostItem(String postID, String studentID, String fullName,
+    public PostItem(String postID, String studentID, String fullName, // studentID is part of the constructor
                     String title, String description, String program,
                     String fileURL, Timestamp timestamp,
                     int likesCount, int commentsCount) {
         this.postID = postID;
-        this.studentID = studentID;
+        this.studentID = studentID; // studentID is set here
         this.fullName = fullName;
         this.title = title;
         this.description = description;
@@ -36,7 +36,7 @@ public class PostItem {
 
     // Getters
     public String getPostID() { return postID; }
-    public String getStudentID() { return studentID; }
+    public String getStudentID() { return studentID; } // Getter for studentID already exists
     public String getFullName() { return fullName; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
@@ -48,7 +48,7 @@ public class PostItem {
 
     // Setters
     public void setPostID(String postID) { this.postID = postID; }
-    public void setStudentID(String studentID) { this.studentID = studentID; }
+    public void setStudentID(String studentID) { this.studentID = studentID; } // Setter for studentID already exists
     public void setFullName(String fullName) { this.fullName = fullName; }
     public void setTitle(String title) { this.title = title; }
     public void setDescription(String description) { this.description = description; }
