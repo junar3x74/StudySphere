@@ -7,9 +7,15 @@
     android:padding="24dp"
     android:background="#03A9F4">
 
+    <ImageView
+        android:id="@+id/profileAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_default_avatar"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_shape"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Profile Info -->
-    <!-- android:text="Full Name" -->
     <TextView
         android:id="@+id/profileFullName"
         android:layout_width="wrap_content"
@@ -19,21 +25,10 @@
         android:textColor="@color/black"
         android:layout_marginBottom="4dp" />
 
-    <!-- android:text="Student ID: 00-00000" -->
     <TextView
         android:id="@+id/profileStudentId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginBottom="2dp" />
-
-    <!-- android:text="Email: example@email.com" -->
-    <TextView
-        android:id="@+id/profileEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email: example@email.com"
         android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_marginBottom="16dp" />
@@ -66,7 +61,6 @@
         android:padding="12dp" />
 
 
-    <!-- Lite Mode Section -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,7 +78,6 @@
         android:textColor="@color/black"
         android:layout_marginBottom="24dp" />
 
-    <!-- Action Buttons -->
     <Button
         android:id="@+id/btnChangeEmail"
         android:layout_width="match_parent"

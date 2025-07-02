@@ -37,6 +37,9 @@ dependencies {
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.firebase:firebase-firestore:24.10.0")
+    implementation ("com.google.android.material:material:1.x.x") // Use the version you have, e.g., 1.9.0
+    implementation ("com.github.bumptech.glide:glide:4.16.0") // Use the latest version
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
 
 
     implementation(libs.appcompat)

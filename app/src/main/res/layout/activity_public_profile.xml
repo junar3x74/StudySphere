@@ -3,17 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:fitsSystemWindows="true"
     android:background="#03A9F4">
 
-    <!-- Top Info Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/publicProfileAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_default_avatar" android:scaleType="centerCrop"
+            android:background="@drawable/circle_shape" android:layout_marginBottom="16dp" />
 
         <TextView
             android:id="@+id/publicProfileFullName"
@@ -31,10 +37,27 @@
             android:layout_height="wrap_content"
             android:text="Student ID: 00-00000"
             android:textSize="16sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+        android:id="@+id/btnEditPublicProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:textColor="#03A9F4"
+        android:backgroundTint="#FFFFFF"
+        android:background="@drawable/rounded_corner"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_marginBottom="24dp"/>
+
     </LinearLayout>
 
-    <!-- User Posts -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/publicUserPostsRecycler"
         android:layout_width="match_parent"

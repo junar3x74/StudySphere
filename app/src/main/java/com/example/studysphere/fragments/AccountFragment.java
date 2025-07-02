@@ -21,7 +21,8 @@ import com.google.firebase.firestore.*;
 
 public class AccountFragment extends Fragment {
 
-    private TextView profileFullName, profileStudentId, profileEmail;
+    // Removed profileEmail TextView declaration
+    private TextView profileFullName, profileStudentId; // profileEmail removed
     private Button btnLogout, btnChangeEmail, btnChangePassword, btnViewProfile, btnMessages;
     private Switch liteModeSwitch;
     private FirebaseAuth mAuth;
@@ -33,11 +34,8 @@ public class AccountFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (user != null) {
-            user.reload().addOnSuccessListener(unused -> {
-                profileEmail.setText("Email: " + user.getEmail());
-            });
-        }
+        // Removed the profileEmail.setText() call from onResume()
+        // No changes needed here as profileEmail is removed
     }
 
     @Nullable
@@ -67,7 +65,8 @@ public class AccountFragment extends Fragment {
 
         profileFullName = view.findViewById(R.id.profileFullName);
         profileStudentId = view.findViewById(R.id.profileStudentId);
-        profileEmail = view.findViewById(R.id.profileEmail);
+        // Removed profileEmail from findViewById
+        // profileEmail = view.findViewById(R.id.profileEmail); // This line is removed
         btnViewProfile = view.findViewById(R.id.btnViewProfile);
         btnMessages = view.findViewById(R.id.btnMessages);
         btnChangeEmail = view.findViewById(R.id.btnChangeEmail);
@@ -75,7 +74,8 @@ public class AccountFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
         liteModeSwitch = view.findViewById(R.id.switchLiteMode);
 
-        profileEmail.setText("Email: " + user.getEmail());
+        // Removed profileEmail.setText() call
+        // profileEmail.setText("Email: " + user.getEmail()); // This line is removed
 
         db.collection("users").document(user.getUid())
                 .get()
@@ -117,7 +117,8 @@ public class AccountFragment extends Fragment {
                     );
         });
 
-        Button btnMessages = view.findViewById(R.id.btnMessages);
+        // Duplicated btnMessages declaration, fixed to use the class field.
+        // Button btnMessages = view.findViewById(R.id.btnMessages); // This line is removed (already declared above)
         btnMessages.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), MessagesActivity.class));
         });
